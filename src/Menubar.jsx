@@ -1,5 +1,4 @@
-import {Link} from 'react-router';
-import { LogoutIcon } from './Icon';
+import LogoutButton from './ConfirmLogout';
 
 const Menubar = () => {
   return (
@@ -11,9 +10,7 @@ const Menubar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <Link to={'/'} className="nav-link">
-                <i className="fs-4 bi-house"><LogoutIcon/></i><span className="ms-1 d-none d-sm-inline">Logout</span>
-              </Link>
+              <LogoutButton/>
             </li>
           </ul>
         </div>
