@@ -3,6 +3,8 @@ import { Link, useParams } from "react-router";
 
 import {loadUserDetails} from './api';
 
+const TITLE = 'User details';
+
 let UserDetails = () => {
     let { id } = useParams();
     let [user, setUser] = useState(null);
@@ -25,7 +27,7 @@ let UserDetails = () => {
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb">
                             <li className="breadcrumb-item"><Link to={'/dashboard/users'} className="nav-link">Users</Link></li>
-                            <li className="breadcrumb-item active" aria-current="page">User details</li>
+                            <li className="breadcrumb-item active" aria-current="page">{TITLE}</li>
                         </ol>
                     </nav>
                 </div>
@@ -34,7 +36,7 @@ let UserDetails = () => {
                 <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
                     <li className="breadcrumb-item"><Link to={'/dashboard/users'} className="nav-link">Users</Link></li>
-                    <li className="breadcrumb-item active" aria-current="page">User details</li>
+                    <li className="breadcrumb-item active" aria-current="page">{TITLE}</li>
                 </ol>
                 </nav>
                 <br/>

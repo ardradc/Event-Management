@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
-import { EyeIcon } from './Icon';
+import { EyeIcon, NewIcon } from './Icon';
 
 import {loadVendors} from './api';
+import FloatingButton from './FloatingButton';
+import LoadingOverlay from './LoadingOverlay';
+
+const TITLE = 'Vendors';
 
 let Vendor = () => {
     let [vendorsList, setVendorsList] = useState([]);
@@ -33,40 +37,45 @@ let Vendor = () => {
     return (
       <>
         <div className="container container-fluid">
-            <div className="d-flex">
-                <h2>Vendors list</h2>
-            </div>
-            <br/>
-            
-            {
-                vendorsList.length === 0 ?
-
-                <div className="d-flex justify-content-center">
-                    <div className="spinner-border" role="status">
-                        <span className="visually-hidden">Please wait...</span>
+            <div className="row">
+                <div className="col-11">
+                    <div className="d-flex">
+                        <h2>{TITLE}</h2>
                     </div>
                 </div>
-
-            :
-                <div className="d-flex">
-                    <table className="table table-hover table-bordered table-striped">
-                        <thead>
-                            <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">View</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {vendorsList}
-                        </tbody>
-                    </table>
+                <div className="col-1">
+                    <Link to={'add'}>
+                        <FloatingButton icon={<NewIcon/>}/>
+                    </Link>
                 </div>
-                
-            }
+            </div>
+            <div className="row">
+                <div className="col-12">
+                    <br/>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-12">
+                    <div className="d-flex">
+                        <table className="table table-hover table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">First</th>
+                                <th scope="col">Last</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">View</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {vendorsList}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
+        <LoadingOverlay isLoading={ vendorsList.length > 0 ? false : true} />
       </>
     )
 };

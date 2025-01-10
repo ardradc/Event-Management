@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
-import { EyeIcon } from './Icon';
+import { EyeIcon, NewServiceIcon } from './Icon';
 
 import {loadServices} from './api';
+import FloatingButton from './FloatingButton';
+import LoadingOverlay from './LoadingOverlay';
+
+const TITLE = 'Services';
 
 let Service = () => {
     let [servicesList, setServicesList] = useState([]);
@@ -34,41 +38,46 @@ let Service = () => {
     return (
       <>
         <div className="container container-fluid">
-            <div className="d-flex">
-                <h2>Services list</h2>
-            </div>
-            <br/>
-            
-            {
-                servicesList.length === 0 ?
-
-                <div className="d-flex justify-content-center">
-                    <div className="spinner-border" role="status">
-                        <span className="visually-hidden">Please wait...</span>
+            <div className="row">
+                <div className="col-11">
+                    <div className="d-flex">
+                        <h2>{TITLE}</h2>
                     </div>
                 </div>
-
-            :
-                <div className="d-flex">
-                    <table className="table table-hover table-bordered table-striped">
-                        <thead>
-                            <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">UPC</th>
-                            <th scope="col">EAN</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">View</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {servicesList}
-                        </tbody>
-                    </table>
+                <div className="col-1">
+                    <Link to={'add'}>
+                        <FloatingButton icon={<NewServiceIcon/>}/>
+                    </Link>
                 </div>
-                
-            }
+            </div>
+            <div className="row">
+                <div className="col-12">
+                    <br/>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-12">
+                    <div className="d-flex">
+                        <table className="table table-hover table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">UPC</th>
+                                <th scope="col">EAN</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">View</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {servicesList}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
+        <LoadingOverlay isLoading={ servicesList.length > 0 ? false : true} />
       </>
     )
 };
