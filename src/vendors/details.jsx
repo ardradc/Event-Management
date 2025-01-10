@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 
-import {loadVendorDetails} from './api';
+import {loadVendorDetails} from '../api';
 
 let VendorDetails = () => {
     let { id } = useParams();

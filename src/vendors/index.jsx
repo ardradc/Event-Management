@@ -1,36 +1,35 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
-import { EyeIcon, NewServiceIcon } from './Icon';
+import { EyeIcon, NewIcon } from '../Icon';
 
-import {loadServices} from './api';
-import FloatingButton from './FloatingButton';
-import LoadingOverlay from './LoadingOverlay';
+import {loadVendors} from '../api';
+import FloatingButton from '../FloatingButton';
+import LoadingOverlay from '../LoadingOverlay';
 
-const TITLE = 'Services';
+const TITLE = 'Vendors';
 
-let Service = () => {
-    let [servicesList, setServicesList] = useState([]);
+let Vendor = () => {
+    let [vendorsList, setVendorsList] = useState([]);
     
     useEffect(() => {
-        loadServices((data) => {
-            let rows = data.map((service) => {
-                return generateRow(service);
+        loadVendors((data) => {
+            let rows = data.map((vendor) => {
+                return generateRow(vendor);
             });
-            setServicesList(rows);
+            setVendorsList(rows);
         },() => {
-            setServicesList([]);
+            setVendorsList([]);
         });
     }, []);
 
-    function generateRow(service) {
+    function generateRow(vendor) {
         return (
-            <tr key = {service.id}>
-                <th scope="row">{service.id}</th>
-                <td>{service.name}</td>
-                <td>{service.upc}</td>
-                <td>{service.ean}</td>
-                <td>{service.price}</td>
-                <td><Link to={`details/${service.id}`}><EyeIcon/> </Link></td>
+            <tr key = {vendor.id}>
+                <th scope="row">{vendor.id}</th>
+                <td>{vendor.firstname}</td>
+                <td>{vendor.lastname}</td>
+                <td>@{vendor.email}</td>
+                <td><Link to={`details/${vendor.id}`}><EyeIcon/> </Link></td>
             </tr>
         );
     }
@@ -46,7 +45,7 @@ let Service = () => {
                 </div>
                 <div className="col-1">
                     <Link to={'add'}>
-                        <FloatingButton icon={<NewServiceIcon/>}/>
+                        <FloatingButton icon={<NewIcon/>}/>
                     </Link>
                 </div>
             </div>
@@ -62,24 +61,23 @@ let Service = () => {
                             <thead>
                                 <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">UPC</th>
-                                <th scope="col">EAN</th>
-                                <th scope="col">Price</th>
+                                <th scope="col">First</th>
+                                <th scope="col">Last</th>
+                                <th scope="col">Email</th>
                                 <th scope="col">View</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {servicesList}
+                                {vendorsList}
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-        <LoadingOverlay isLoading={ servicesList.length > 0 ? false : true} />
+        <LoadingOverlay isLoading={ vendorsList.length > 0 ? false : true} />
       </>
     )
 };
 
-export default Service;
+export default Vendor;

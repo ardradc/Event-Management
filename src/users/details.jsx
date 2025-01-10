@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 
-import {loadUserDetails} from './api';
+import {loadUserDetails} from '../api';
 
 const TITLE = 'User details';
 

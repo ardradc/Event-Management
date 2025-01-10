@@ -1,5 +1,5 @@
-import RecentOrders from "./dashboard/RecentOrders";
-import Tiles from "./dashboard/Tiles";
+import RecentOrders from "./RecentOrders";
+import Tiles from "./Tiles";
 
 let Home = () => {
     return (
