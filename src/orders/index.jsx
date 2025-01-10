@@ -29,7 +29,7 @@ let Order = () => {
                 <td>{order.upc}</td>
                 <td>{order.ean}</td>
                 <td>{order.price}</td>
-                <td><Link to={`details/${order.id}`}><EyeIcon/> </Link></td>
+                <td><Link to={`details/${order.id}`}><div className="text-dark"><EyeIcon/></div></Link></td>
             </tr>
         );
     }

@@ -28,8 +28,8 @@ let Vendor = () => {
                 <th scope="row">{vendor.id}</th>
                 <td>{vendor.firstname}</td>
                 <td>{vendor.lastname}</td>
-                <td>@{vendor.email}</td>
-                <td><Link to={`details/${vendor.id}`}><EyeIcon/> </Link></td>
+                <td>{vendor.email}</td>
+                <td><Link to={`details/${vendor.id}`}><div className="text-dark"><EyeIcon/></div></Link></td>
             </tr>
         );
     }

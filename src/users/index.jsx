@@ -31,8 +31,8 @@ let User = () => {
                 <th scope="row">{user.id}</th>
                 <td>{user.firstname}</td>
                 <td>{user.lastname}</td>
-                <td>@{user.email}</td>
-                <td><Link to={`details/${user.id}`}><EyeIcon/> </Link></td>
+                <td>{user.email}</td>
+                <td><Link to={`details/${user.id}`}><div className="text-dark"><EyeIcon/></div></Link></td>
             </tr>
         );
     }

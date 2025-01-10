@@ -1,14 +1,8 @@
-import { Link } from 'react-router';
+import logo from './assets/logo.png';
 
 let Logo = () => {
     return (
-        <nav className="navbar bg-body-tertiary">
-            <div className="container">
-                <Link to={'/dashboard'} className="nav-link">
-                    iServe
-                </Link>
-            </div>
-        </nav>
+        <img src={logo} width={100}/>
     );
 }
 

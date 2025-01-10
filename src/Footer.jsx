@@ -3,7 +3,7 @@ let  Footer = () => {
       <>
         <footer className="fixed-bottom">
             <div style={{ textAlign: 'center', color: 'gray'}}>
-              {new Date().getFullYear()} &copy; Copyright, iSERVE, All rights reserved.
+              {new Date().getFullYear()} &copy; - FULLMOON Services Pvt Ltd, All rights reserved.
             </div>
         </footer>
       </>

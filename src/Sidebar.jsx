@@ -1,10 +1,15 @@
+import { useState } from 'react';
 import {Link} from 'react-router';
+import {Collapse} from 'react-bootstrap';
+
 import { DashboardIcon, ServicesIcon, UsersIcon, VendorsIcon, OrdersIcon } from './Icon';
 
 const Sidebar = () => {
+    const [open] = useState(true);
+
     return (
         <>
-            <div className="bg-dark text-white position-fixed" style={{ width: "250px", height: "100vh", marginTop: "56px" }}>
+            <Collapse in={open}  className="bg-dark text-white position-fixed" style={{ width: "250px", height: "100vh", marginTop: "56px" }}>
                 <ul className="nav flex-column">
                     <li className="nav-item">
                         <Link to={'/dashboard'} className="nav-link text-white">
@@ -38,7 +43,7 @@ const Sidebar = () => {
                         </Link>
                     </li>
                 </ul>
-            </div>
+            </Collapse >
         </>
     );
   };

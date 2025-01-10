@@ -30,7 +30,7 @@ let Service = () => {
                 <td>{service.upc}</td>
                 <td>{service.ean}</td>
                 <td>{service.price}</td>
-                <td><Link to={`details/${service.id}`}><EyeIcon/> </Link></td>
+                <td><Link to={`details/${service.id}`}><div className="text-dark"><EyeIcon/></div></Link></td>
             </tr>
         );
     }

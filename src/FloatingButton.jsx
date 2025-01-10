@@ -2,7 +2,7 @@
 const FloatingButton = ({icon}) => {
     return (
       <button 
-        className="btn btn-primary position-fixed" 
+        className="btn btn-dark position-fixed" 
         style={{ 
           bottom: "20px", 
           right: "20px", 
