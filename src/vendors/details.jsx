@@ -3,6 +3,8 @@ import { Link, useParams } from "react-router";
 
 import {loadVendorDetails} from '../api';
 
+const TITLE = 'Vendor details';
+
 let VendorDetails = () => {
     let { id } = useParams();
     let [vendor, setVendor] = useState(null);
@@ -21,35 +23,45 @@ let VendorDetails = () => {
                 <div className="d-flex">
                     <h2>Vendor details</h2>
                 </div>
-
-                <nav aria-label="breadcrumb">
-                <ol className="breadcrumb">
-                <li className="breadcrumb-item"><Link to={'/dashboard/vendors'} className="nav-link">Vendors</Link></li>
-                <li className="breadcrumb-item active" aria-current="page">Vendor details</li>
-                </ol>
-                </nav>
+                <div className="d-flex">
+                    <nav aria-label="breadcrumb">
+                        <ol className="breadcrumb">
+                            <li className="breadcrumb-item"><Link to={'/dashboard/vendors'} className="nav-link">Vendors</Link></li>
+                            <li className="breadcrumb-item active" aria-current="page">{TITLE}</li>
+                        </ol>
+                    </nav>
+                </div>
                 <br/>
-                {
-                    vendor && vendor !== null ? 
-                    <div className="d-flex">
-                        <div className="card">
-                            <img src="..." className="card-img-top" alt="..." />
-                            <div className="card-body">
-                            <h5 className="card-title">{vendor.firstname} { vendor.lastname}</h5>
-                            <p className="card-text">
-                                Email: {vendor.email}
-                            </p>
-                            <Link to={'/dashboard/vendors'} className="btn btn-primary">Back to vendors</Link>
-                            </div>
+
+                <div className="d-flex">
+                    <form className="row g-3">
+                        <div className="col-md-6">
+                            <label htmlFor="firstName" className="form-label">First name</label>
+                            <input type="text" className={`form-control ${vendor == null ? 'placeholder placeholder-wave' : null}`} id="firstName" value={vendor?.firstname}/>
                         </div>
-                    </div>
-                    :
-                    <div className="d-flex justify-content-center">
-                        <div className="spinner-border" role="status">
-                            <span className="visually-hidden">Please wait...</span>
+                        <div className="col-md-6">
+                            <label htmlFor="lastName" className="form-label">Last name</label>
+                            <input type="text" className={`form-control ${vendor == null ? 'placeholder placeholder-wave' : null}`} id="lastName" value={vendor?.lastname}/>
                         </div>
-                    </div>
-                }
+                        <div className="col-md-6">
+                            <label htmlFor="emailaddress" className="form-label">Email address</label>
+                            <input type="text" className={`form-control ${vendor == null ? 'placeholder placeholder-wave' : null}`} id="emailaddress" value={vendor?.email}/>
+                        </div>
+                        <div className="col-md-6">
+                            <label htmlFor="id" className="form-label">ID</label>
+                            <input type="text" className={`form-control ${vendor == null ? 'placeholder placeholder-wave' : null}`} id="id" value={vendor?.uuid}/>
+                        </div>
+                        <div className="col-md-6">
+                            <label htmlFor="phoneNumber" className="form-label">Phone number</label>
+                            <input type="text" className={`form-control ${vendor == null ? 'placeholder placeholder-wave' : null}`} id="phoneNumber" value={vendor?.phone}/>
+                        </div>
+                        <div className="col-12" style={{ textAlign: 'center' }}>
+                            <button type="submit" className="btn btn-primary">SAVE</button>
+                            &nbsp;
+                            <Link to={'/dashboard/vendors'} className="btn btn-secondary">CANCEL</Link>
+                        </div>
+                    </form>
+                </div>
             </div>
         </>
     );

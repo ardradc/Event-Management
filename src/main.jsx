@@ -2,6 +2,9 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 
 import {BrowserRouter, Routes, Route } from 'react-router';
+
+import Login from './login/Login.jsx';
+
 import DashboardLayout from './DashboardLayout.jsx';
 
 import Home from './dashboard/index.jsx';
@@ -18,8 +21,10 @@ import Service from './services/index.jsx';
 import AddService from './services/add.jsx';
 import ServiceDetails from './services/details.jsx';
 
+import Order from './orders/index.jsx';
+import OrderDetails from './orders/details.jsx';
+
 import Error from './error/Error.jsx';
-import Login from './login/Login.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -29,7 +34,7 @@ createRoot(document.getElementById('root')).render(
 
         <Route path='dashboard' element={<DashboardLayout/>}>
           <Route index element={<Home/>}></Route>
-          
+
           <Route path='users' element={<User/>}></Route>
           <Route path='users/add' element={<AddUser/>}></Route>
           <Route path='users/details/:id' element={<UserDetails/>}></Route>
@@ -41,6 +46,9 @@ createRoot(document.getElementById('root')).render(
           <Route path='services' element={<Service/>}></Route>
           <Route path='services/add' element={<AddService/>}></Route>
           <Route path='services/details/:id' element={<ServiceDetails/>}></Route>
+
+          <Route path='orders' element={<Order/>}></Route>
+          <Route path='orders/details/:id' element={<OrderDetails/>}></Route>
         </Route>
 
         <Route path='*' element={<Error/>}></Route>

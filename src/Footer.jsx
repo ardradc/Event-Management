@@ -1,7 +1,7 @@
 let  Footer = () => {
     return(
       <>
-        <footer>
+        <footer className="fixed-bottom">
             <div style={{ textAlign: 'center', color: 'gray'}}>
               {new Date().getFullYear()} &copy; Copyright, iSERVE, All rights reserved.
             </div>

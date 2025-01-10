@@ -1,34 +1,21 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 
-import {loadServiceDetails} from '../api';
+import {loadOrderDetails} from '../api';
 
-const TITLE = 'Service details';
+const TITLE = 'Order details';
 
-let ServiceDetails = () => {
+let OrderDetails = () => {
     let { id } = useParams();
-    let [service, setService] = useState(null);
-    let [tags, setTags] = useState([]);
+    let [order, setOrder] = useState(null);
 
     useEffect(() => {
-        loadServiceDetails(id, (data) => {
-            setService(data[0]);
+        loadOrderDetails(id, (data) => {
+            setOrder(data[0]);
         },() => {
-            setService(null);
+            setOrder(null);
         });
     }, [id]);
-
-    useEffect(() => {
-        service !== null ? buildTags() : null;
-    }, [service]);
-
-    function buildTags() {
-        setTags(service.tags.map((tag, index) => {
-           return (
-            <span key={index} className="badge rounded-pill text-bg-light ">{tag}</span>
-           )
-        }));
-    }
 
     return (
         <>
@@ -39,7 +26,7 @@ let ServiceDetails = () => {
                 <div className="d-flex">
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb">
-                            <li className="breadcrumb-item"><Link to={'/dashboard/services'} className="nav-link">Services</Link></li>
+                            <li className="breadcrumb-item"><Link to={'/dashboard/orders'} className="nav-link">Orders</Link></li>
                             <li className="breadcrumb-item active" aria-current="page">{TITLE}</li>
                         </ol>
                     </nav>
@@ -49,44 +36,36 @@ let ServiceDetails = () => {
                     <form className="row g-3">
                         <div className="col-md-6">
                             <label htmlFor="serviceName" className="form-label">Name</label>
-                            <input type="text" className={`form-control ${service == null ? 'placeholder placeholder-wave' : null}`} id="serviceName" value={service?.name}/>
+                            <input type="text" className={`form-control ${order == null ? 'placeholder placeholder-wave' : null}`} id="serviceName" value={order?.name}/>
                         </div>
                         <div className="col-md-6">
                             <label htmlFor="upc" className="form-label">UPC</label>
-                            <input type="text" className={`form-control ${service == null ? 'placeholder placeholder-wave' : null}`} id="upc" value={service?.upc}/>
+                            <input type="text" className={`form-control ${order == null ? 'placeholder placeholder-wave' : null}`} id="upc" value={order?.upc}/>
                         </div>
                         <div className="col-md-6">
                             <label htmlFor="ean" className="form-label">EAN</label>
-                            <input type="text" className={`form-control ${service == null ? 'placeholder placeholder-wave' : null}`} id="ean" value={service?.ean}/>
+                            <input type="text" className={`form-control ${order == null ? 'placeholder placeholder-wave' : null}`} id="ean" value={order?.ean}/>
                         </div>
                         <div className="col-md-6">
                             <label htmlFor="price" className="form-label">Price</label>
-                            <input type="text" className={`form-control ${service == null ? 'placeholder placeholder-wave' : null}`} id="price" value={service?.price}/>
+                            <input type="text" className={`form-control ${order == null ? 'placeholder placeholder-wave' : null}`} id="price" value={order?.price}/>
                         </div>
                         <div className="col-md-6">
                             <label htmlFor="netPrice" className="form-label">Net price</label>
-                            <input type="text" className={`form-control ${service == null ? 'placeholder placeholder-wave' : null}`} id="netPrice" value={service?.net_price}/>
+                            <input type="text" className={`form-control ${order == null ? 'placeholder placeholder-wave' : null}`} id="netPrice" value={order?.net_price}/>
                         </div>
                         <div className="col-md-6">
                             <label htmlFor="taxes" className="form-label">Taxes</label>
-                            <input type="text" className={`form-control ${service == null ? 'placeholder placeholder-wave' : null}`} id="taxes" value={service?.taxes}/>
+                            <input type="text" className={`form-control ${order == null ? 'placeholder placeholder-wave' : null}`} id="taxes" value={order?.taxes}/>
                         </div>
                         <div className="col-12">
-                            <div className="row">
-                                <div className="col-12">
-                                <label htmlFor="taxes" className="form-label">Tags: </label>
-                                {tags}
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-12">
-                            <button className="icon-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                            <button className="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
                                 Show description
                             </button>
                             <div>
                                 <div className="collapse" id="collapseWidthExample">
                                     <div className="card card-body">
-                                        {service?.description}
+                                        {order?.description}
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +73,7 @@ let ServiceDetails = () => {
                         <div className="col-12" style={{ textAlign: 'center' }}>
                             <button type="submit" className="btn btn-primary">SAVE</button>
                             &nbsp;
-                            <Link to={'/dashboard/services'} className="btn btn-secondary">CANCEL</Link>
+                            <Link to={'/dashboard/orders'} className="btn btn-secondary">CANCEL</Link>
                         </div>
                     </form>
                 </div>
@@ -103,4 +82,4 @@ let ServiceDetails = () => {
     );
 };
 
-export default ServiceDetails;
+export default OrderDetails;

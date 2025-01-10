@@ -97,4 +97,45 @@ function loadServiceDetails(id, resolve, reject) {
       });
 }
 
-export { loadUsers, loadUserDetails, loadVendors, loadVendorDetails, loadServices, loadServiceDetails };
+function loadOrders(resolve, reject) {
+  const requestOptions = {
+      method: "GET",
+      redirect: "follow"
+    };
+    
+    fetch(`${SERVER_URL}/products?_quantity=${ITEMS_PER_PAGE}&_categories_type=uuid`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        resolve(result.data);
+      })
+      .catch(() => {
+        reject(null);
+      });
+}
+
+function loadOrderDetails(id, resolve, reject) {
+  const requestOptions = {
+      method: "GET",
+      redirect: "follow"
+    };
+    
+    fetch(`${SERVER_URL}/products?_quantity=1&_categories_type=uuid`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        resolve(result.data);
+      })
+      .catch(() => {
+        reject(null);
+      });
+}
+
+export { 
+  loadUsers, 
+  loadUserDetails, 
+  loadVendors, 
+  loadVendorDetails, 
+  loadServices, 
+  loadServiceDetails, 
+  loadOrders, 
+  loadOrderDetails 
+};
