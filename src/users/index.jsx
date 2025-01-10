@@ -1,35 +1,38 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
-import { EyeIcon, NewIcon } from './Icon';
+import { EyeIcon, NewIcon } from '../Icon';
 
-import {loadVendors} from './api';
-import FloatingButton from './FloatingButton';
-import LoadingOverlay from './LoadingOverlay';
+import {loadUsers} from '../api';
+import FloatingButton from '../FloatingButton';
+import LoadingOverlay from '../LoadingOverlay';
 
-const TITLE = 'Vendors';
+const TITLE = 'Users';
 
-let Vendor = () => {
-    let [vendorsList, setVendorsList] = useState([]);
+let User = () => {
+    let [usersList, setUsersList] = useState([]);
     
     useEffect(() => {
-        loadVendors((data) => {
-            let rows = data.map((vendor) => {
-                return generateRow(vendor);
+        loadUsers(
+        (data) => {
+            let rows = data.map((user) => {
+                return generateRow(user);
             });
-            setVendorsList(rows);
-        },() => {
-            setVendorsList([]);
+            setUsersList(rows);
+        },
+        (error) => {
+            console.log(error);
+            setUsersList([]);
         });
     }, []);
 
-    function generateRow(vendor) {
+    function generateRow(user) {
         return (
-            <tr key = {vendor.id}>
-                <th scope="row">{vendor.id}</th>
-                <td>{vendor.firstname}</td>
-                <td>{vendor.lastname}</td>
-                <td>@{vendor.email}</td>
-                <td><Link to={`details/${vendor.id}`}><EyeIcon/> </Link></td>
+            <tr key = {user.id}>
+                <th scope="row">{user.id}</th>
+                <td>{user.firstname}</td>
+                <td>{user.lastname}</td>
+                <td>@{user.email}</td>
+                <td><Link to={`details/${user.id}`}><EyeIcon/> </Link></td>
             </tr>
         );
     }
@@ -60,24 +63,24 @@ let Vendor = () => {
                         <table className="table table-hover table-bordered table-striped">
                             <thead>
                                 <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">View</th>
+                                    <th scope="col">#</th>
+                                    <th scope="col">First</th>
+                                    <th scope="col">Last</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">View</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {vendorsList}
+                                {usersList}
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-        <LoadingOverlay isLoading={ vendorsList.length > 0 ? false : true} />
+        <LoadingOverlay isLoading={ usersList.length > 0 ? false : true} />     
       </>
     )
 };
 
-export default Vendor;
+export default User;

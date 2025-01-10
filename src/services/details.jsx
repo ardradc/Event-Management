@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 
-import {loadServiceDetails} from './api';
+import {loadServiceDetails} from '../api';
 
 const TITLE = 'Service details';
 
