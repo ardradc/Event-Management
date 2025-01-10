@@ -1,23 +1,21 @@
-import Menubar from "./Menubar";
-import Footer from "./Footer";
 
-import {Outlet } from 'react-router';
+import { Outlet } from "react-router";
+import Menubar from "./Menubar";
 import Sidebar from "./Sidebar";
+import Footer from './Footer';
 
 let  DashboardLayout = () => {
-    return(
-      <>
-        <div className="container-fluid">
-          <div className="row flex-nowrap">
-            <Sidebar/>
-            <div className="col py-3">
-              <Menubar/>
-              <Outlet/>
-              <Footer/>
-            </div>
+    return (
+      <div>
+        <Menubar />
+        <div className="d-flex">
+          <Sidebar />
+          <div className="flex-grow-1 p-3" style={{ marginLeft: "250px", marginTop: "56px" }}>
+            <Outlet/>
+            <Footer/>
           </div>
         </div>
-      </>
+      </div>
     )
   };
   
